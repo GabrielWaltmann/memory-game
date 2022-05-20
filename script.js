@@ -1,14 +1,16 @@
-/* set cards id */
-let cards = document.querySelectorAll('.card')
-let listCards = [...cards]
-for (i=0; i < listCards.length; i++){
-    listCards[i].setAttribute("id", i+1)
+cards = document.querySelectorAll(".card")
+cardsArray = [...cards]
 
-    listCards[i].addEventListener("click", turn)
+document.addEventListener("DOMContentLoaded", (e)=>{
+    
+})
+
+for(i=0; i< cardsArray.length; i++){
+    cardsArray[i].addEventListener("click", (e)=>{
+        clicked()
+    })
 }
 
-function turn(e){
-    var card = e.target
-    card.setAttribute("class", "card rotate")
-    console.log(card.className)
+function clicked(){
+    console.log("clicou")
 }
