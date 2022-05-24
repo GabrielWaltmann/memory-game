@@ -65,7 +65,6 @@ body{
 
 .back{
     background-color: #102d5c;
-    transform: rotateY(180deg);
 }
 
 img{

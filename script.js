@@ -1,50 +1,94 @@
-let cards = document.querySelectorAll(".card")
-let cardsArray = [...cards]
 
 /* 
     console.log() 
 */
 
-let spaces = ["","","","","","","","","","",
-              "","","","","","","","","","",]
+let cards = document.querySelector(".cards")
 
-let SRCadded = [false, false, false, false, false,
-             false, false, false, false, false,]
+function show(){
+    let SRCs = ["images/cards/criper.png",
+            "images/cards/ghost.png",
+            "images/cards/machado.png",
+            "images/cards/pa.png",
+            "images/cards/picareta.png",
+            "images/cards/pig.png",
+            "images/cards/pug.png",
+            "images/cards/skeleton.png",
+            "images/cards/steve.png",
+            "images/cards/sword.png"]
 
-let SRCs = ["images/cards/criper.png",
-            "images/cards/ghost.png","images/cards/machado.png","images/cards/pa.png",
-            "images/cards/picareta.png","images/cards/pig.png","images/cards/pug.png","images/cards/skeleton.png","images/cards/steve.png","images/cards/sword.png",]
 
-let conter = 0
-
-
-for(i=0; i< spaces.length; i++){
-    spaces[i] = {img:"", isThe2: 0}
-}
-
-for(i=0; i< spaces.length; i++){
-    while(spaces[i].isThe2 < 2){
-        n = Math.round(Math.random() * 10-1)
-        if(spaces[i].img != SRCs[n]){
-            spaces[i].img = SRCs[n]
-            spaces[i].isThe2++
-            
-            console.log(spaces, n) 
-
+    list = []
+    for(x=0; x<=1; x++)
+    if(x==0){
+        for(i=0; i< 10; i++){
+            let card = ""
+                card = `
+                    <div class="card" id="${i}">
+                        <div class="front">
+                            <img src="${SRCs[i]}" alt="Frente da carta">
+                        </div>
+                        <div class="back" >
+                            <img src="images/cards/back.gif" alt="Atras da carta">
+                        </div>
+                    </div>`
+            list.push(`${card}`)
         }
+    }
+    else if(x==1){
+        for(i=0; i< 10; i++){
+            let card = ""
+                card = `
+                    <div class="card" id="${i+10}">
+                        <div class="front">
+                            <img src="${SRCs[i]}" alt="Frente da carta">
+                        </div>
+                        <div class="back" >
+                            <img src="images/cards/back.gif" alt="Atras da carta">
+                        </div>
+                    </div>`
+            list.push(`${card}`) 
+                    
+        }
+    }
+    for(i=0; i< list.length; i++){
+        random = Math.round(Math.random() * 20)
+        if (document.getElementById("#"+random) == null){
+            cards.innerHTML += list[random]
+        }
+    }
+
+    let c = cards.children 
+    c = [...c]
+    for(i=0; i < c.length; i++){
+    c[i].addEventListener("click", (e)=>{
+        rotate(e)
+        console.log(c[i]) 
+
+
+    })
 
     }
+    function rotate(e){
+    let r = ""   
+    r = e.target.parentElement 
+    r = r.parentElement
+    console.log(r.parentElement) 
+
+
+    if(r.className == "card"){
+        r.setAttribute("class", "card rotate")
+    }
+
+    else if(r.className == "card rotate"){
+        r.setAttribute("class","card")
+    }
+    }
     }
 
 
 
-
-
-
-
-
-start()
-
+ /* 
 
 function start(){
 
@@ -75,7 +119,7 @@ function start(){
         }
     }
 
-/*         number = Math.round(Math.random() * 10)
+       number = Math.round(Math.random() * 10)
         p.push(number) 
 
         let front = cardsArray[i].firstElementChild,
