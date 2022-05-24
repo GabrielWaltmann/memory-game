@@ -1,12 +1,10 @@
-
-/* 
-    console.log() 
-*/
+/* console.log() */
 
 let cards = document.querySelector(".cards")
+var list = []
 
 function show(){
-    let SRCs = ["images/cards/criper.png",
+    let images = ["images/cards/criper.png",
             "images/cards/ghost.png",
             "images/cards/machado.png",
             "images/cards/pa.png",
@@ -18,73 +16,69 @@ function show(){
             "images/cards/sword.png"]
 
 
-    list = []
-    for(x=0; x<=1; x++)
-    if(x==0){
-        for(i=0; i< 10; i++){
-            let card = ""
-                card = `
-                    <div class="card" id="${i}">
-                        <div class="front">
-                            <img src="${SRCs[i]}" alt="Frente da carta">
-                        </div>
-                        <div class="back" >
-                            <img src="images/cards/back.gif" alt="Atras da carta">
-                        </div>
-                    </div>`
-            list.push(`${card}`)
+    for(x=0; x<=1; x++){
+        if(x==0){
+            for(i=0; i< 10; i++){
+                let card = ""
+                    card = `<div class="card" id="${i}">
+                                <div class="front">
+                                    <img src="${images[i]}" alt="Frente da carta">
+                                </div>
+                                <div class="back" >
+                                    <img src="images/cards/back.gif" alt="Atras da carta">
+                                </div>
+                            </div>`
+                list.push({card:`${card}`,added:0,id:i})
+            }
         }
-    }
-    else if(x==1){
-        for(i=0; i< 10; i++){
-            let card = ""
-                card = `
-                    <div class="card" id="${i+10}">
-                        <div class="front">
-                            <img src="${SRCs[i]}" alt="Frente da carta">
-                        </div>
-                        <div class="back" >
-                            <img src="images/cards/back.gif" alt="Atras da carta">
-                        </div>
-                    </div>`
-            list.push(`${card}`) 
-                    
-        }
-    }
-    for(i=0; i< list.length; i++){
-        random = Math.round(Math.random() * 20)
-        if (document.getElementById("#"+random) == null){
-            cards.innerHTML += list[random]
+        else if(x==1){
+            for(i=0; i< 10; i++){
+                let card = ""
+                    card = `<div class="card" id="${i+10}">
+                                <div class="front">
+                                    <img src="${images[i]}" alt="Frente da carta">
+                                </div>
+                                <div class="back" >
+                                    <img src="images/cards/back.gif" alt="Atras da carta">
+                                </div>
+                            </div>`
+                list.push({card:`${card}`,added:0,id:i}) 
+                        
+            }
         }
     }
 
     let c = cards.children 
     c = [...c]
     for(i=0; i < c.length; i++){
-    c[i].addEventListener("click", (e)=>{
-        rotate(e)
-        console.log(c[i]) 
-
-
-    })
-
+        c[i].addEventListener("click", (e)=>{
+            rotate(e)})
     }
+
+        while(cards.children.length < 20){
+            random = Math.round(Math.random() * 20)
+            id =  list[random].id
+            if(document.getElementById(list[random].id) == undefined && list[random].added == 0){
+                cards.innerHTML += (list[random].card)
+                list[random].added++
+            }          
+        }
+
+
+
     function rotate(e){
-    let r = ""   
-    r = e.target.parentElement 
-    r = r.parentElement
-    console.log(r.parentElement) 
+    let element = e.target.parentElement
 
-
-    if(r.className == "card"){
-        r.setAttribute("class", "card rotate")
+    if(element.className == "card"){
+        element.setAttribute("class", "card rotate")
     }
 
-    else if(r.className == "card rotate"){
-        r.setAttribute("class","card")
+    else if(element.className == "card rotate"){
+        element.setAttribute("class","card")
     }
     }
-    }
+
+}
 
 
 

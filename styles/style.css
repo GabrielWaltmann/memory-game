@@ -61,6 +61,8 @@ body{
 }
 .front{
     background-color: #508def;
+    transform: rotateY(180deg);
+
 }
 
 .back{
