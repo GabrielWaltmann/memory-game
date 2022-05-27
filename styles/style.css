@@ -68,9 +68,11 @@ body{
 
 .back{
     background-color: #102d5c;
+
 }
 
 img{
+    pointer-events: none;
     height: 50px;
     width: 50px;
 }

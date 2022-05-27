@@ -12,7 +12,7 @@ let images = ["images/cards/criper.png",
 "images/cards/steve.png",
 "images/cards/sword.png"]
 let list = []
-let hits = []
+let clicks = {doubles:[null,null], hits:0}
 let box = document.querySelector(".cards")
 
 
@@ -46,7 +46,7 @@ for(x=0; x<=1; x++){
     }
 }
 
-setInterval(function (){
+setInterval(function random (){
     pos = Math.round(Math.random() * 10)
     if(list[pos].added == 0 && pos != 10){
         box.innerHTML += list[pos].card
@@ -56,131 +56,44 @@ setInterval(function (){
         box.innerHTML += list[pos].card
         list[pos].added++
     }
+    
 },10)
 
-let cardsChildren = box.children 
-cardsChildren = [...cardsChildren]
-for(i=0; i < cardsChildren.length; i++){
-    cardsChildren[i].addEventListener("click", (e)=>{
-        element = e.target.parentElement
-
-        
-
-        /* if(element.className == "card" ){
-            element.setAttribute("class", "card rotate")
-        }
-
-         else if(element.className == "card rotate"){
-            element.setAttribute("class","card")
-        }  */
-    })
-}
-
-
-    /*
-    let cardsChildren = cards.children 
-    cardsChildren = [...cardsChildren]
-    for(i=0; i < cardsChildren.length; i++){
-        cardsChildren[i].addEventListener("click", (e)=>{
-            rotate(e)})
-    }
-
-    let round = [{id:null, turn:0},{id:null, turn:0}]
-    function rotate(e){
-        let element = ""
-        element = e.target.parentElement
-        if (round[0].turn == 0 || round[1].turn == 0){
-
-            if(round[0].turn == 0){
-                round[0].turn++
-                round[0].id = element.id
-                console.log(round[0].turn,round[0].id)
-                if(element.className == "card" ){
-                    element.setAttribute("class", "card rotate")
-                }
     
-                 else if(element.className == "card rotate"){
-                    element.setAttribute("class","card")
-                } 
+
+
+
+setTimeout(function rotate(){
+    cards = box.children
+    for(i=0; i < cards.length; i++){
+        cards[i].addEventListener("click", (e)=>{
+            let element = e.target.parentElement
+
+            if(clicks.hits == 10){
+                alert("Parabens! Você encontrou todos os pares")
+            }
+
+            if(clicks.doubles[0] == null){
+                clicks.doubles[0] = element
+                element.classList.toggle("rotate")
+            } else if(clicks.doubles[1] == null){
+                clicks.doubles[1] = element
+                element.classList.toggle("rotate")
+            }else if(clicks.doubles[0].id != clicks.doubles[1].id){
+                clicks.doubles[0].classList.remove("rotate")
+                clicks.doubles[1].classList.remove("rotate")
+
+                clicks.doubles[0] = null
+                clicks.doubles[1] = null
+            }else if(clicks.doubles[0].id == clicks.doubles[1].id){
+                clicks.hits++
+                clicks.doubles[0] = null
+                clicks.doubles[1] = null
+            }
+
             
-            else if(round[1].turn == 0)
-                round[1].turn++
-                round[1].id = element.id
-                console.log(round[1].turn,round[1].id)
-                if(element.className == "card" ){
-                    element.setAttribute("class", "card rotate")
-                
-    
-                else if(element.className == "card rotate"){
-                    element.setAttribute("class","card")
-                } 
-                
-        
-        else if(round[0].turn == 1 && round[1].turn == 1)
-
-            cardsChildren[round[0].id].setAttribute("class", "card rotate")
-            cardsChildren[round[1].id].setAttribute("class", "card rotate")
-            
-          if(round[0].id != round[1].id){
-
-
-                    
-
-                    console.log(list, document.getElementsByClassName("rotate", "card"))
-                
-                
-                round[0].turn = 0
-                round[1].turn = 0
-
-                round[0].id = null
-                round[1].id = null  
-
-            } 
-
-        
-
-
-    
-
-
-
-
-
-function start(){
-
-
-
-    
-    for(i=0; i< cardsArray.length; i++){
-
-        cardsArray[i].addEventListener("click", (e)=>{
-            rotate(e)
         })
+    }
     
-    }
+},500)
 
-}
-
-
-    function rotate(e){
-        
-        let card = e.target.parentElement
-
-        if(card.className == "card"){
-            card.setAttribute("class", "card rotate")
-        }
-
-        else if(card.className == "card rotate"){
-            card.setAttribute("class","card")
-        }
-    }
-
-       number = Math.round(Math.random() * 10)
-        p.push(number) 
-
-        let front = cardsArray[i].firstElementChild,
-        img = document.createElement("img")
-        img.setAttribute("src","images/cards/pig.png")
-        front.appendChild(img)
-
-        console.log(front.firstElementChild) */ 
