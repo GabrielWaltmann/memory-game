@@ -1,6 +1,3 @@
-/* console.log() */
-
-
 let images = ["images/cards/criper.png",
 "images/cards/ghost.png",
 "images/cards/machado.png",
@@ -24,7 +21,7 @@ for(x=0; x<=1; x++){
                                 <img src="${images[i]}" alt="Frente da carta">
                             </div>
                             <div class="back" >
-                                <img src="images/cards/back.gif" alt="Atras da carta">
+                                <img src="images/cards/back.png" alt="Atras da carta">
                             </div>
                         </div>`
             list.push({card:`${card}`,added:0,id:i})
@@ -37,7 +34,7 @@ for(x=0; x<=1; x++){
                                 <img src="${images[i]}" alt="Frente da carta">
                             </div>
                             <div class="back" >
-                                <img src="images/cards/back.gif" alt="Atras da carta">
+                                <img src="images/cards/back.png" alt="Atras da carta">
                             </div>
                         </div>`
             list.push({card:`${card}`,added:0,id:i}) 
@@ -46,32 +43,35 @@ for(x=0; x<=1; x++){
     }
 }
 
+ box.addEventListener("mousemove", ()=>{
+    if(clicks.hits >= 10){
+        win = `<div class="win" > 
+                <p>Todos os pares foram encontrados!</p>
+                <button onclick="restart()" class="restart">Restart</button>
+               </div>`
+        document.body.innerHTML += win
+        document.querySelector(".restart")
+    }
+}) 
+
 setInterval(function random (){
-    pos = Math.round(Math.random() * 10)
-    if(list[pos].added == 0 && pos != 10){
-        box.innerHTML += list[pos].card
-        list[pos].added++
+    number = Math.round(Math.random() * 10)
+    if(list[number].added == 0 && number != 10){
+        box.innerHTML += list[number].card
+        list[number].added++
     }
-    else if(list[pos].added == 1 && pos != 10){
-        box.innerHTML += list[pos].card
-        list[pos].added++
-    }
+    else if(list[number].added == 1 && number != 10){
+        box.innerHTML += list[number].card
+        list[number].added++
+    } 
     
-},10)
-
-    
-
-
+},10)    
 
 setTimeout(function rotate(){
     cards = box.children
     for(i=0; i < cards.length; i++){
         cards[i].addEventListener("click", (e)=>{
             let element = e.target.parentElement
-
-            if(clicks.hits == 10){
-                alert("Parabens! Você encontrou todos os pares")
-            }
 
             if(clicks.doubles[0] == null){
                 clicks.doubles[0] = element
@@ -93,7 +93,10 @@ setTimeout(function rotate(){
 
             
         })
+        
     }
+
+    
     
 },500)
 

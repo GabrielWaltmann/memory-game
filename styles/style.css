@@ -18,18 +18,35 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url(../images/background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom ;
+    -webkit-backdrop-filter: blur(10px);
+
+}
+
+h1{
+    background: #024729;
+    width: 80%;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow:1px 1px 8px 4px #00000025;
+    backdrop-filter: blur(4.3px);
+    -webkit-backdrop-filter: blur(4.3px);
+    font-size: 50px;
+    padding: 20px;
+    letter-spacing: 5px;
 }
 
 .cards{
-    background-color: #1f62cf;
-    width: 90%;
-    height: 90%;
+    width: 80%;
+    height: 80%;
     display: grid;
     grid-template-columns: 22% 22% 22% 22%;
     grid-template-rows: 17% 17% 17% 17% 17%;
     align-content: space-evenly;
     justify-content: space-evenly;
-    border-radius: 20px;
 }
 
 .card{
@@ -49,31 +66,62 @@ body{
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
     user-select: none;
+
+    background: #024729;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.699);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+
 }
 .front{
-    background-color: #508def;
     transform: rotateY(180deg);
 
 }
+.win{
+    position: absolute;
+    background-color: #0000006b;
+    height: 100vh;
+    width: 100vw;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    text-align: center;
+    flex-direction: column;
+    opacity: 100%;
+}
 
-.back{
-    background-color: #102d5c;
+.restart{
+    border: none;
+    font-size: 40px;
+    background-color: #000000;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .6s;
+    margin-top: 60px;
+}
 
+.win button:hover{
+    transform: scale(1.1);
 }
 
 img{
     pointer-events: none;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
 }
 
