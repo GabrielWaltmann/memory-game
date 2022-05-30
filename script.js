@@ -15,6 +15,8 @@ let stopMessage = false
 
 createCards()
 
+rotate()
+
 function createCards(){
     list = []
     for(x=0; x<=1; x++){
