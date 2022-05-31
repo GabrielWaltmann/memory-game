@@ -1,4 +1,4 @@
-let images = ["images/cards/criper.png",
+let SRCS = ["images/cards/criper.png",
 "images/cards/ghost.png",
 "images/cards/machado.png",
 "images/cards/pa.png",
@@ -8,12 +8,42 @@ let images = ["images/cards/criper.png",
 "images/cards/skeleton.png",
 "images/cards/steve.png",
 "images/cards/sword.png"]
-let list = []
-let clicks = {doubles:[null,null], hits:0}
-let box = document.querySelector(".cards")
-let stopMessage = false
 
-createCards()
+let cards = []
+let cheap = document.querySelector(".cheap")
+
+for(SRC of SRCS){
+    cards.push(createCard(SRC))
+    console.log(SRC)
+}
+
+ function createCard(SRC){
+    const random = Math.round(Math.round() * 20)
+    if(findCard(random) == false){
+        return {
+            html: `
+                <div class="card" id="${random}">
+                    <div class="front">
+                        <img src="${SRC}" alt="Frente da carta">
+                    </div>
+                    <div class="back" >
+                        <img src="images/cards/back.png" alt="Atras da carta">
+                    </div>
+                </div>`,
+            }
+    }
+}
+
+function findCard(random){
+    find = cards.indexOf(random)
+    if (find == -1){
+        return false
+    } else{
+        return true
+    }
+} 
+
+/* createCards()
 
 rotate()
 
@@ -125,4 +155,4 @@ function restart(){
 
 function hide(){
     document.querySelector(".message").style = "display: none"
-}
+} */
