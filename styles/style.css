@@ -1,3 +1,5 @@
+
+
 @font-face {
     font-family: minecraftFont ;
     src: url(fonts/Minecraft_Evenings.ttf);
@@ -23,24 +25,23 @@ body{
     background-repeat: no-repeat;
     background-position: bottom ;
     -webkit-backdrop-filter: blur(10px);
-
+    overflow: hidden;
 }
 
 h1{
-    width: 80%;
+    width: 90%;
+    height: 10%;
     text-align: center;
     border-radius: 10px;
-    box-shadow:1px 1px 8px 4px #00000025;
-    backdrop-filter: blur(4.3px);
-    -webkit-backdrop-filter: blur(4.3px);
-    font-size: 50px;
+    font-size: 30px;
     padding: 20px;
+    margin-bottom: 30px;
     letter-spacing: 5px;
 }
 
 .cheap{
-    width: 80%;
-    height: 80%;
+    width: 70%;
+    height: 70%;
     display: grid;
     grid-template-columns: 22% 22% 22% 22%;
     grid-template-rows: 17% 17% 17% 17% 17%;
@@ -76,7 +77,8 @@ h1{
     user-select: none;
 
     background:#1E1F26;
-    border-radius: 16px;
+    border-radius: 0px;
+    padding: 10px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.699);
     backdrop-filter: blur(0px);
     -webkit-backdrop-filter: blur(0px);
@@ -119,8 +121,8 @@ h1{
 
 img{
     pointer-events: none;
-    height: 60px;
-    width: 60px;
+    height: 40px;
+    width: 40px;
 }
 
 #check{
@@ -141,4 +143,33 @@ img{
     transform: scale(1.2);
 }
 
+.win{
+    position: absolute;
+    background-color: #00000059;
+    height: 100vh;
+    width: 100vw;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 40px;
+    text-align: center;
+}
 
+.win button{
+    margin-top: 30px;
+    border: none;
+    font-size: 30px;
+    padding: 10px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+}
+
+.win button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}

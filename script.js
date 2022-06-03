@@ -56,11 +56,20 @@ function addCard(){
 function click(){
     let clicks = document.querySelectorAll(".card")
     pairs = []
-    clicks.forEach(click => click.addEventListener('click',(e)=>{
-        let element = e.target.parentElement
-        element.classList.toggle("rotate")
-        checkPair(element)
 
+    clicks.forEach(click => click.addEventListener('click',(e)=>{
+        if(pairs[0] == pairs[1]-10 ||
+            pairs[0]-10 == pairs[1]){
+            document.getElementById(pairs[0]).className += (" blockRotate")
+            document.getElementById(pairs[1]).className += (" blockRotate")
+            console.log(document.getElementById(pairs[0]).className,document.getElementById(pairs[1]).className)
+        }
+
+        let element = e.target.parentElement
+        
+        element.classList.toggle("rotate")
+        
+        checkPair(element)
     }
 
         
@@ -78,15 +87,12 @@ function checkPair(element){
              pairs[0]-10 == pairs[1]){
         total++
 
-        document.getElementById(pairs[0]).firstChild.removeEventListener("click", checkWin())
-        document.getElementById(pairs[1]).firstChild.removeEventListener("click", console.log)
-
         pairs[0] = element.id
         pairs[1] = null
 
-        
+        checkWin()
             
-    }else{
+    }else {
         document.getElementById(pairs[0]).classList.remove("rotate")
         document.getElementById(pairs[1]).classList.remove("rotate")
 
@@ -98,15 +104,22 @@ function checkPair(element){
 }
 
 function checkWin(){
-    console.log(total)
     if (total == 10){
         win()
     }     
 }
 
 function win(){
-    alert("Parabens! Você encontrou todos os pares")
-    document.location.reload(true)
+        document.body.innerHTML += `
+        <div class="win" onclick="restart()">
+            <h3>Todos os pares foram encontrados!</h3>
+            <button>Restart</button>
+        </div>
+        `
+}
+
+function restart(){
+    document.location.reload()
 }
 
 createCards()
