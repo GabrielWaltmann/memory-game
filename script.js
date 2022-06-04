@@ -17,51 +17,42 @@ checks = []
 function createCards(){
     for(i=0;i< 20; i++){
         if(i<10){
-            cards.push({html:`
-                    <div class="card" id="${i}">
-                        <div class="front">
-                            <img src="${SRCS[i]}" alt="Frente da carta">
-                        </div>
-                        <div class="back" >
-                            <img src="images/cards/back.png" alt="Atras da carta">
-                        </div>
-                    </div>
-            `,
+            cards.push({html:`<div class="card" id="${i}">
+                                <div class="front">
+                                    <img src="${SRCS[i]}" alt="Frente da carta">
+                                </div>
+                                <div class="back" >
+                                    <img src="images/cards/back.png" alt="Atras da carta">
+                                </div>
+                            </div>`,
             image:SRCS[i]})
         }else if(i>=10){
-            cards.push({html:`
-            <div class="card" id="${i}">
-                <div class="front">
-                    <img src="${SRCS[i-10]}" alt="Frente da carta">
-                </div>
-                <div class="back" >
-                    <img src="images/cards/back.png" alt="Atras da carta">
-                </div>
-            </div>
-            `,
+            cards.push({html:`<div class="card" id="${i}">
+                                <div class="front">
+                                    <img src="${SRCS[i-10]}" alt="Frente da carta">
+                                </div>
+                                <div class="back" >
+                                    <img src="images/cards/back.png" alt="Atras da carta">
+                                </div>
+                            </div>`,
             image:SRCS[i-10]})
         }
     }
-
     addCard()
 }
 
 function addCard(){
-
     arrayRandomize = cards.sort(() => Math.random() - 0.5)
     for (let card of arrayRandomize){
         cheap.innerHTML += card.html
-    }
-}
+    }}
 
 function click(){
     let clicks = document.querySelectorAll(".card")
     pairs = []
 
     clicks.forEach(click => click.addEventListener('click',(e)=>{
-
         let element = e.target.parentElement 
-
         if(element.className == "card rotate" ){
             console.log(element.children[1])
         }else if(element.className == "card" ){
@@ -98,11 +89,7 @@ function checkPair(element){
 
 }
 
-function rotate(element){
-
-    element.classList.toggle("rotate")
-
-}
+function rotate(element){element.classList.toggle("rotate")}
 
 
 function check(){
@@ -112,7 +99,6 @@ function check(){
         alert(`Faltam ${10-total} pares a serem encontrados!`)
     }
 }
-
 
 function win(){
         document.body.innerHTML += `
@@ -128,5 +114,4 @@ function restart(){
 }
 
 createCards()
-
 click()
